@@ -1,4 +1,14 @@
-name: Build Android APK
+- name: Build APK
+        run: |
+          echo "Checking project files..."
+          ls -la
+          if [ -f gradlew ]; then
+            chmod +x gradlew
+            ./gradlew assembleDebug
+          else
+            echo "ERROR: gradlew is missing in project"
+            exit 1
+          fi
 
 on:
   push:
@@ -6,7 +16,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+
 
     steps:
       - name: Checkout code
