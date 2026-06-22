@@ -1,14 +1,4 @@
-- name: Build APK
-        run: |
-          echo "Checking project files..."
-          ls -la
-          if [ -f gradlew ]; then
-            chmod +x gradlew
-            ./gradlew assembleDebug
-          else
-            echo "ERROR: gradlew is missing in project"
-            exit 1
-          fi
+name: Build Android APK
 
 on:
   push:
@@ -16,7 +6,7 @@ on:
 
 jobs:
   build:
-
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -25,8 +15,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: temurin
+          java-version: 17
 
       - name: Grant permission to Gradle
         run: chmod +x gradlew
